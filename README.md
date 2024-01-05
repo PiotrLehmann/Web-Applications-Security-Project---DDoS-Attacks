@@ -1,11 +1,17 @@
-# DDoS Attacks
-Web applications security project at 5th semester of ICT a AGH - performing DDoS attack and defence against it
-# Do zrobienia przed rozpoczęciem zadań
+# Ataki DDoS i Obrona Przed Nimi
+## Wymagania i instalacje
+1. VM Ware lub coś w tym stylu
+2. Pobrany serwer apache2
+3. Pobrane narzędzie hping3
+4. Sklonować nasze repozytorium z:
+   * Listą potrzebnych komend
+   * Potrzebnymi plikami
+## Wprowadzenie i przygotowanie środowiska
+blablabla...
+## Zadanie 1.
+Przygotowanie serwera apache na maszynie wirtualnej z dowolnym linuxem. Potem należy przeprowadzić atak SYN flood za pomocą narzędzia hping.. Efektem powinna być nieładująca się strona.
+## Zadanie 2.
+blablabla...
+## Zadanie 3
+blablabla...
 
-# Zadanie 1 - obrona w trakcie ataku SYN flood
-
-tutaj link jak to zrobimy - https://www.youtube.com/watch?v=CzH3UPhKVgQ&t=400s
-
-Będzie polegało na uruchomieniu serwera na systemie ubuntu, oraz wejścia na stonę serwowaną przez niego i sprawdzenie czy strona jest dostępna. Nastepnie należy wykonać podstawowy atak DoS (ewentualnie atak DDoS - w takich warunkach różni się on wykonywaniem ataków z kilku terminali). Po wykonaniu ataku należy sprawdzić, czy strona odpowiada i przejść do obrony w trakcie ataku. Wykonujemy szereg poleceń, które znajdą, wyfiltrują oraz zablokują ruch intruza. Powinno to spowodować automatyczne powrotne działanie strony.
-
-# Zadanie 2 - IMO jakaś forma DDoSa ale idk jak jeszcze to zorbić
