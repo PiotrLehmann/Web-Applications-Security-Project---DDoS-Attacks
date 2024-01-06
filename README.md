@@ -29,5 +29,16 @@ Po zalogowaniu powinieneś zobaczyć dashboard ze zużyciem zasobów serwera (tw
 Używając hamburger-menu przystępujemy do kolejnych kroków, żeby móc wreszcie hostować podstawową stronę na Apache2.
   * Wejdź do zakładki `System`, wybierz `Software Package Updates` a następnie zaktualizuj wszystkie paczki przyciskiem `Update`. Pominięcie tego kroku może powodować komplikacje w ćwiczeniach!
   * W zakładce `Unused Modules` wybieramy `Apache WebServer` i przechodzimy do instalacji
-Apache2 powinno włączyć się odrazu i serwować podstawową stronę wyglądającą tak:
-![apache_photo]([https://www.google.com/url?sa=i&url=https%3A%2F%2Fhelp.nextcloud.com%2Ft%2Fexisting-snap-install-now-just-shows-apache-default-page%2F32221&psig=AOvVaw1xk93HtCjpiLiURl_PmmEJ&ust=1704644758496000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODEhd2WyYMDFQAAAAAdAAAAABAD](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linux.com%2Faudience%2Fdevops%2Fapache-ubuntu-linux-beginners%2F&psig=AOvVaw1xk93HtCjpiLiURl_PmmEJ&ust=1704644758496000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODEhd2WyYMDFQAAAAAdAAAAABAI)https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linux.com%2Faudience%2Fdevops%2Fapache-ubuntu-linux-beginners%2F&psig=AOvVaw1xk93HtCjpiLiURl_PmmEJ&ust=1704644758496000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODEhd2WyYMDFQAAAAAdAAAAABAI)
+Apache2 powinno włączyć się odrazu i serwować podstawową stronę. Można na nią przejść na swoim głownym systemie, `wpisując adres maszyny wirtualnej w pasek przeglądarki`. Jeśli jednak byłby problem z jej wyświetleniem, polecamy wykonać komendę `service apache2 restart`, lub `stop` a potem `start`. W tym momencie maszyna wirtualna broniącego się jest już gotowa. Możesz teraz włączyć drugą maszynę wirtualną (polecamy podzielić ekran na pół). Pozostaw także windowsową przeglądarkę uruchomioną ze stroną pod adresem maszyny broniącego.
+### Konfiguracja maszyny atakującego
+Tutaj już zostaje nam niewiele do zrobienia. Musimy na maszynie atakującego wykonać kilka komend
+  * `sudo apt-get update`
+  * `sudo apt install net-tools`
+  * `sudo apt install hping3`
+### Przetestuj łącznośc pomiędzy maszynami
+Użyj komend `ifconfig`, na maszynie broniącego. Następnie na maszynie atakującego wykonaj ping pod adres maszyny broniącego. Jeżeli wykonałeś wszystko poprawnie, ping powinien przechodzić z sukcesem.
+
+## Zadanie 2.
+A tym zadaniu przechodzimy już do ataku i obrony przed nim. Nasza prezentacja opowiada o DDoS, jednakże nie będziemy wykonywać ataku z kilku komputerów naraz. Dla zachowania idei i prostoty, wykonamy rodzaj ataku DoS, którym jest SYN flood. W trakcie prezentacji był on szczegółowo opisany, dlatego skoro wiesz już, jak on działa, możesz wykonać go za pomocą hping3.
+  * wykonaj komendę `sudo hping3 -S --flood -V -p 80 <adres_maszyny_broniącego>`
+Flaga `-S` odpowiada za rodzaj ataku (SYN flood), `--flood` powoduje wysyłanie pakietów tak szybko, jak to możliwe (zalewając nimi nasz cel). `-V` pozwala na "Verbose output" odpowiedzi na wysyłane zapytania. Atakujemy adres na porcie `80`, za co odpowiada flaga `-p`. Jest to port http, dzięki temu zobaczymy efekt niełądującej się strony. `UWAGA`, widoczność efektów ataku jest zależna od wielu czynników, należy chwilę poczekać, zanim serwer przestanie odpowiadać. Gdyby ktoś chciał pokombinować z flagami komendy hping3, odsyłamy do jej oficjalnej dokumentacji [tutaj](https://linux.die.net/man/8/hping3).
