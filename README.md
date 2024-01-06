@@ -1,11 +1,8 @@
 # Ataki DDoS i Obrona Przed Nimi
-## Wymagania i instalacje
-1. VM Ware lub coś w tym stylu
-2. Pobrany serwer apache2
-3. Pobrane narzędzie hping3
-4. Sklonować nasze repozytorium z:
-   * Listą potrzebnych komend
-   * Potrzebnymi plikami
+## Wymagania i instalacje (zalecane: zrobić ten segment przed rozpoczęciem Labu)
+* Potrzebne bedą dwie maszyny wirtualne (atakujący i broniący się), polecamy do tego VMWare lub VirtualBox
+* Na obydwu maszynach trzeba zainstalować Ubuntu (to nasz wybór, możesz zainstalować dowolny system linux).
+
 ## Wprowadzenie i przygotowanie środowiska
 blablabla...
 ## Zadanie 1.
