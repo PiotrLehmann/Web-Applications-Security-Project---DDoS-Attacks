@@ -23,5 +23,11 @@ Następnie przechodzimy do pobrania zasobów
 Po wykonaniu powyższych instrukcji, wystarczy sprawdzić swój adres IP
   * komendą `ifconfig`
 Pod tym adresem, na porcie `10000` będzie teraz działać nasz `webmin`. Wejdź na stronę i zaloguj się swoim loginem i hasłem do linuxa.
-  * Jeżeli twoje login i hasło nie działają, użyj koemndy `sudo -i`, a następnie `sudo       
-  passwd` i zmień swoje hasło.
+  * Jeżeli twoje login i hasło nie działają, użyj koemndy `sudo -i`, a następnie `sudo      passwd` i zmień swoje hasło.
+Po zalogowaniu powinieneś zobaczyć dashboard ze zużyciem zasobów serwera (twojej maszyny wirtualnej).
+### Utworzenie web-serwera Apache2
+Używając hamburger-menu przystępujemy do kolejnych kroków, żeby móc wreszcie hostować podstawową stronę na Apache2.
+  * Wejdź do zakładki `System`, wybierz `Software Package Updates` a następnie zaktualizuj wszystkie paczki przyciskiem `Update`. Pominięcie tego kroku może powodować komplikacje w ćwiczeniach!
+  * W zakładce `Unused Modules` wybieramy `Apache WebServer` i przechodzimy do instalacji
+Apache2 powinno włączyć się odrazu i serwować podstawową stronę wyglądającą tak:
+![apache_photo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fhelp.nextcloud.com%2Ft%2Fexisting-snap-install-now-just-shows-apache-default-page%2F32221&psig=AOvVaw1xk93HtCjpiLiURl_PmmEJ&ust=1704644758496000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODEhd2WyYMDFQAAAAAdAAAAABAD)
