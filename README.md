@@ -44,3 +44,21 @@ A tym zadaniu przechodzimy już do ataku i obrony przed nim. Nasza prezentacja o
 Flaga `-S` odpowiada za rodzaj ataku (SYN flood), `--flood` powoduje wysyłanie pakietów tak szybko, jak to możliwe (zalewając nimi nasz cel). `-V` pozwala na "Verbose output" odpowiedzi na wysyłane zapytania. Atakujemy adres na porcie `80`, za co odpowiada flaga `-p`. Jest to port http, dzięki temu zobaczymy efekt niełądującej się strony. `UWAGA`, widoczność efektów ataku jest zależna od wielu czynników, należy chwilę poczekać, zanim serwer przestanie odpowiadać. Gdyby ktoś chciał pokombinować z flagami komendy hping3, odsyłamy do jej oficjalnej dokumentacji [tutaj](https://linux.die.net/man/8/hping3). Z jakiegoś powodu, u nas atak zadziałał dopiero za 3 razem, polecamy użyć kilku terminali, lub odczekać dłuższą chwilę. Dłuższe niż 2s ładowanie statycznej strony można również traktować jako sukces, jeżeli nie chcecie nadwyrężać swojego sprzętu, który już i tak ma uruchomione dwie maszyny wirtualne. **Odświeżajcie cały czas swoją stronę z apache2, żeby zobaczyć efekty**
   * Przechodzimy teraz do odnalezienia źródła problemu (adresu atakującego). Z tego względu użyjemy komendy `netstat -an | grep :80 sort`. Flaga `-a` odpowiada za pokazywanie ruchu ze wszystkich socketów, `-n` odpowiada, za pokazanie przy wynikach adresów źródłowych. Szukamy oczywiście na porcie 80 i sortujemy. W ten sposób znajdziemy adres atakującego - sprawdz, czy ten adres należy do twojej drugiej maszyny wirtualnej.
   * Mając już konkretny adres, skopiuj go. Użyjemy teraz popularnego narzędzia `iptables`, które pozwala filtrować, blokować, odrzucać ruch przychodzący i wychodzący pod nasz adres. Ma też wiele innych funkcjonalności, ale nie użyjemy ich na naszym labie. Żeby zablokować adres atakującego, użyj komendy `sudo iptables -I INPUT -s <adres_atakującego> -j REJECT`. Po wykonaniu tej komendy nie będzie widać efektu odrazu, nasz serwer dalej ma przepełnione bufory, wcześniej wysłanymi zapytaniami. Musimy go zatem zrestarować poleceniami `service apache2 stop`, a następnie `service apache2 start`. **Efektem po odświeżeniu strony, powinno być powrotne się jej załadowanie, mimo ciągle przeprowadzanego ataku**. Sprawdz również, czy możesz wykonać ping w z maszyny atakującego.. Powinien być on odrzucany. Brawo właśnie obroniłeś/aś się przed bardzo podstawowym atakiem DoS.
+
+## Zadanie 3.
+Nasze poprzednie akcje powstrzymują bardzo podstawowy atak wykonany przez niezbyt kompetentą osobę. Narzędzi do ataków DoS jest bardzo dużo, im droższe tym najczęściej bardziej skuteczne. Hping3 oferuje dużo więcej możliwości, niż pokazaliśmy w powyższym ćwiczeniu. Zacznijmy choćby od flagi `--rand-source`, która spowoduje wyświetlenie w naszym netstat losowych adresów IP, zamiast faktycznego adresu atakującego. Wykonanie takiego ataku z kilku terminali (w naszym symulowanym środowisku), lub z wielu zainfekowanych przez atakującego komputerów, skończyłoby się całkowitym zablokowaniem dostępu do naszej strony i iptables zdałoby się na niewiele, w zależności od tego jak dużo adresów próbowałoby "DDoSować" nasz serwer. Dlatego w 3 zadaniu spróbujemy bronić się przed atakiem w bardziej uniwersalny sposób, który jednak po złej konfiguracji, może znacznie obniżyć jakość usług którą oferujemy na serwerze - mowa tutaj o `evasive mode`. `Jest to mod, który możemy dodać do naszego serwera Apache`, a oferuje kontrolę nad `Rate limiting`, czyli można powiedzieć, stopniem zużycia zasobów naszego serwera. Możem,y tu wprowadzić kilka ustawień, które dadzą nam porządane efekty w kwestii obrony przez atakami DoS i DDoS. Zacznijmy zatem konfigurację, potrzebujemy najpierw uruchomić terminal na maszynie broniącego i pobrać evasive_mode na nasz serwer apache2.
+  * `sudo apt-get update`
+  * `sudo apt-get install apache2-utils`
+  * `sudo apt-get install libapache2-mod-evasive`
+  * `sudo nano /etc/apache2/mods-enabled/evasive.conf`
+Powinnien wyświetlić się wam plik konfiguracyjny z następującymi opcjami do ustawienia.
+```
+DOSHashTableSize 3097
+DOSPageCount 2
+DOSSiteCount 50
+DOSPageInterval 1
+DOSSiteInterval 1
+DOSBlockingPeriod 10
+DOSEmailNotify mail@yourdomain.com
+DOSLogDir "/var/log/apache2/"
+```
