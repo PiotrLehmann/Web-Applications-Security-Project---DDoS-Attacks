@@ -62,3 +62,20 @@ DOSBlockingPeriod 10
 DOSEmailNotify mail@yourdomain.com
 DOSLogDir "/var/log/apache2/"
 ```
+  * `DOSHashTableSize` musi być to liczba pierwsza, definiuje jak duża może być tablica dostępu do naszegej strony. Gdybyśmy ustawili zbyt mały numer, nie będzie możliwy dostęp dla wielu normalnych użytkowników w jedny momencie.
+  * `DOSPageCount ` to liczba identycznych requestów do identycznego URI, jakie użytkownik może zrobić podczas `DOSPageInterval`. Ustawiając wartość 2, dla `DOSPageInterval` = 10s, ustalimy zasadę, która pozwoli tylko raz odświeżyć stronę użytkownikowi. Należałoby zatem ustawić tu sensowne wartości
+  * `DOSSiteCount` podobne do powyższego ale dotyczy dostępu do całej strony, a nie do konkretnych URI podczas `DOSSiteInterval `
+  * `DOSBlockingPeriod` jeżeli użytkownik przekroczy którykolwiek z limitów, zostanie zablokowany na ten właśnie czas. Podczas blokady będziemy dostawać odpowiedź `403 Forbidden Error`
+  * `DOSEmailNotify` to bardzo fajna opcja, która pozwala na otrzymanie wiadomości email na określony adres mailowy w razie ataku. Spróbuj ustawić tutaj swój adres mailowy.
+
+Po ustawieniu wszystkich opcji zresetuj serwer komendą `sudo systemctl reload apache2` lub wyłącz go i włącz ponownie. Twórcy evasive_mode wprowadzili z jego plikami test, który przetestuje twoją konfigurację, symulując atak. Uruchom go poprzez wykonanie komendy `perl /usr/share/doc/libapache2-mod-evasive/examples/test.pl`. Output powinien wyglądać tak:
+```
+HTTP/1.1 403 Forbidden
+HTTP/1.1 403 Forbidden
+HTTP/1.1 403 Forbidden
+HTTP/1.1 403 Forbidden
+HTTP/1.1 403 Forbidden
+HTTP/1.1 403 Forbidden
+```
+
+Następnie sam przetestuj działanie, zaatakuj serwer komendą `sudo hping3 -S --flood --rand-source -V -p 80 <adres_maszyny_broniącego>`. Możesz to zrobić z wielu terminali naraz, symulując atak DDoS. Sprawdź teraz, czy mail przychodzi na twoją skrzynkę, czy strona dalej działa. Spróbuj wejść na stronę na swopim głownym systemie, odświeżyć ją kilka razy. Sprawdź czy blokowanie działa na ustawiony przez ciebie czas. Jeśli wszystko działa - Gratulacje - twój serwer apache2 jest bezpieczny atakami DoS!
