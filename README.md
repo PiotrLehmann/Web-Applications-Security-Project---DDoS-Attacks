@@ -28,7 +28,7 @@ Pod tym adresem, na porcie `10000` będzie teraz działać nasz `webmin`. Wejdź
 Po zalogowaniu powinieneś zobaczyć dashboard ze zużyciem zasobów serwera (twojej maszyny wirtualnej).
 ### Utworzenie web-serwera Apache2
 Używając hamburger-menu przystępujemy do kolejnych kroków, żeby móc wreszcie hostować podstawową stronę na Apache2.
-  * Wejdź do zakładki `System`, wybierz `Software Package Updates` a następnie zaktualizuj wszystkie paczki przyciskiem `Update`. Pominięcie tego kroku może powodować komplikacje w ćwiczeniach!
+  * Wejdź do zakładki `System`, wybierz `Software Package Updates`. Domyślnie wszystkie paczki powinny być zaznaczone. Nie zmieniaj tego i zaktualizuj wszystkie paczki przyciskiem `Update Selected Packages`. Pominięcie tego kroku może powodować komplikacje w ćwiczeniach!
   * W zakładce `Unused Modules` wybieramy `Apache WebServer` i przechodzimy do instalacji
 Apache2 powinno włączyć się odrazu i serwować podstawową stronę. Można na nią przejść na swoim głownym systemie, `wpisując adres maszyny wirtualnej w pasek przeglądarki`. Jeśli jednak byłby problem z jej wyświetleniem, polecamy wykonać komendę `service apache2 restart`, lub `stop` a potem `start`. W tym momencie maszyna wirtualna broniącego się jest już gotowa. Możesz teraz włączyć drugą maszynę wirtualną (polecamy podzielić ekran na pół). Pozostaw także windowsową przeglądarkę uruchomioną ze stroną pod adresem maszyny broniącego.
 ### Konfiguracja maszyny atakującego
