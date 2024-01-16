@@ -23,7 +23,7 @@ Następnie przechodzimy do pobrania zasobów:
   * `sudo apt-get install webmin`
 Po wykonaniu powyższych instrukcji, wystarczy sprawdzić swój adres IP
   * komendą `ifconfig`
-Pod tym adresem, na porcie `10000` będzie teraz działać nasz `webmin`. Wejdź na stronę i zaloguj się swoim loginem i hasłem do linuxa.
+Pod tym adresem, na porcie `10000` będzie teraz działać nasz `webmin`. Wejdź w przeglądarce na stronę `<Twoj adres IP>:10000` i zaloguj się swoim loginem i hasłem do linuxa.
   * Jeżeli twoje login i hasło nie działają, użyj koemndy `sudo -i`, a następnie `sudo      passwd` i zmień swoje hasło.
 Po zalogowaniu powinieneś zobaczyć dashboard ze zużyciem zasobów serwera (twojej maszyny wirtualnej).
 ### Utworzenie web-serwera Apache2
