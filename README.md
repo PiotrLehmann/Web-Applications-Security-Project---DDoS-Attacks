@@ -16,7 +16,8 @@ Webmin to panel kontrolny do obsługi między innymi naszego web-serwer apache2.
   * Otwórz plik sources.list w dowolnym edytorze `sudo nano /etc/apt/sources.list`
   * Przejdź na sam dół pliku i po Enterze dodaj kolejną linijkę, która będzie źródłem      
   repozytorium `deb http://download.webmin.com/download/repository sarge contrib`
-Następnie przechodzimy do pobrania zasobów
+Następnie przechodzimy do pobrania zasobów:
+  * `wget http://www.webmin.com/jcameron-key.asc`
   * `sudo apt-key add jcameron-key.asc`
   * `sudo apt-get update`
   * `sudo apt-get install webmin`
