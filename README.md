@@ -1,6 +1,6 @@
 # Ataki DDoS i Obrona Przed Nimi
 ## Zalecane przed Labem (przygotowanie środowiska)
-1. Potrzebne bedą `dwie maszyny wirtualne` (`atakujący` i `broniący` serwera), polecamy do tego `VMWare` lub `VirtualBox`
+1. Potrzebne bedą `dwie maszyny wirtualne` (`atakujący` i `broniący` serwera), polecamy do tego `VMWare` lub `VirtualBox`, z systemem operacyjnym Linux (my użyliśmy ubuntu 22.04)
    * [Jak zainstalować VMWare?](https://www.youtube.com/watch?v=PoNPBdKLZdk)
    * [Jak zainstalować Ubuntu na maszynie wirtualnej?](https://www.youtube.com/watch?v=NhlhJFKmzpk&t=261s)
      
