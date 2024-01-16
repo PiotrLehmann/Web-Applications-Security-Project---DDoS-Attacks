@@ -79,5 +79,6 @@ HTTP/1.1 403 Forbidden
 HTTP/1.1 403 Forbidden
 HTTP/1.1 403 Forbidden
 ```
+(gdyby skrypt PERL nie działał, odśwież stronę kilka razy i sprawdź czy otrzymujesz status 403 Forbidden).
 
 Następnie sam przetestuj działanie, zaatakuj serwer komendą `sudo hping3 -S --flood --rand-source -V -p 80 <adres_maszyny_broniącego>`. Możesz to zrobić z wielu terminali naraz, symulując atak DDoS. Sprawdź teraz, czy mail przychodzi na twoją skrzynkę, czy strona dalej działa. Spróbuj wejść na stronę na swopim głownym systemie, odświeżyć ją kilka razy. Sprawdź czy blokowanie działa na ustawiony przez ciebie czas. Jeśli wszystko działa - Gratulacje - twój serwer apache2 jest bezpieczny atakami DoS!
