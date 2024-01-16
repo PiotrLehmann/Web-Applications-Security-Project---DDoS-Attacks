@@ -8,7 +8,7 @@
    * `sudo apt-get update`
    * `sudo apt install net-tools`
 
-## Zadanie 1
+## Zadanie 1 - konfiguracja maszyny obrońcy
 To zadanie będzie polegało na skonfigurowaniu i uruchomieniu web-serwera Apache2, który będzie serwował swoją podstawową stronę, pod adresem naszej wirtualnej maszyny. Efektem wykonania zadania powinna być możliwość otworzenia strony 'pod adresem naszej maszyny wirtualnej' na windowsie. To właśnie na windowsie będziemy obserwować efekt ataku DoS, oraz czy obrona przed nim zadziałała.
 
 ### Instalacja Webmin
