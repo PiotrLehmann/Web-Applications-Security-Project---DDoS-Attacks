@@ -51,7 +51,7 @@ Flaga `-S` odpowiada za rodzaj ataku (SYN flood), `--flood` powoduje wysyłanie 
 Nasze poprzednie akcje powstrzymują bardzo podstawowy atak wykonany przez niezbyt kompetentną osobę. Narzędzi do ataków DoS jest bardzo dużo, a im droższe, tym najczęściej bardziej skuteczne. Hping3 oferuje dużo więcej możliwości, niż pokazaliśmy w powyższym ćwiczeniu. Zacznijmy choćby od flagi `--rand-source`, która spowoduje wyświetlenie w naszym netstat losowych adresów IP, zamiast faktycznego adresu atakującego. Wykonanie takiego ataku z kilku terminali (w naszym symulowanym środowisku) lub z wielu zainfekowanych przez atakującego komputerów skończyłoby się całkowitym zablokowaniem dostępu do naszej strony i iptables zdałoby się na niewiele, w zależności od tego, jak dużo adresów próbowałoby "DDoSować" nasz serwer. Dlatego w 3 zadaniu spróbujemy bronić się przed atakiem w bardziej uniwersalny sposób, który jednak, po złej konfiguracji, może znacznie obniżyć jakość usług, którą oferujemy na serwerze - mowa tutaj o `evasive mode`. `Jest to mod, który możemy dodać do naszego serwera Apache`, oferuje on kontrolę nad `Rate limiting`, czyli, można powiedzieć, stopniem zużycia zasobów naszego serwera. Możemy tu wprowadzić kilka ustawień, które dadzą nam pożądane efekty w kwestii obrony przez atakami DoS i DDoS. Zacznijmy zatem konfigurację - potrzebujemy najpierw uruchomić terminal na maszynie broniącego i pobrać evasive_mode na nasz serwer apache2.
   * `sudo apt-get update`
   * `sudo apt-get install apache2-utils`
-  * `sudo apt-get install libapache2-mod-evasive`
+  * `sudo apt install libapache2-mod-evasive`
   * `sudo nano /etc/apache2/mods-enabled/evasive.conf`
 Powinnien wyświetlić się wam plik konfiguracyjny z następującymi opcjami do ustawienia.
 ```
