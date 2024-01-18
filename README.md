@@ -38,7 +38,7 @@ Tutaj już zostaje nam niewiele do zrobienia. Musimy na maszynie atakującego wy
   * `sudo apt install net-tools`
   * `sudo apt install hping3`
 ### Przetestuj łącznośc pomiędzy maszynami
-Użyj komend `ifconfig`, na maszynie broniącego. Następnie na maszynie atakującego wykonaj ping pod adres maszyny broniącego. Jeżeli wykonałeś wszystko poprawnie, ping powinien przechodzić z sukcesem.  - ![#f03c15](Do zaliczenia zadania wyślij screenshot pinga z maszyny atakującego do obrońcy oraz screenshot działającej strony podstawowej Apache.) `#f03c15`
+Użyj komend `ifconfig`, na maszynie broniącego. Następnie na maszynie atakującego wykonaj ping pod adres maszyny broniącego. Jeżeli wykonałeś wszystko poprawnie, ping powinien przechodzić z sukcesem. **`Do zaliczenia zadania wyślij screenshot pinga z maszyny atakującego do obrońcy oraz screenshot działającej strony podstawowej Apache.`**
 
 ## Zadanie 2.
 A tym zadaniu przechodzimy już do ataku i obrony przed nim. Nasza prezentacja opowiada o DDoS, jednakże nie będziemy wykonywać ataku z kilku komputerów naraz. Dla zachowania idei i prostoty, wykonamy rodzaj ataku DoS, którym jest SYN flood. W trakcie prezentacji był on szczegółowo opisany, dlatego skoro wiesz już, jak on działa, możesz wykonać go za pomocą hping3.
